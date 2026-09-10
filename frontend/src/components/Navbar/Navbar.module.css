@@ -1,0 +1,45 @@
+.nav {
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem;
+    border:1px solid #ccc;
+    border-radius: .4rem;
+    box-shadow: 0 0 10px rgba(196, 210, 3, 0.9);
+}
+.left {
+    padding: 0;
+    margin: 0;
+}
+.left a img {
+    height : auto;
+    max-width: 65%;
+    min-width: 65%;
+    aspect-ratio: 1/1;
+    border-radius: 80%;
+    object-fit: cover;
+}
+
+.right ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.right ul li a {
+    text-decoration: none;
+    color: #d5cbcb;
+    font-size: .8rem;
+    font-weight: 500;
+
+    &:hover {
+        color: #d9be12;
+    }
+    &:active {
+        color: #d9be12;
+    }
+}

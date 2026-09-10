@@ -1,0 +1,82 @@
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+
+# Editor and IDE files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.user
+*.userossc
+*.ntvs*
+*.njsproj
+*.sln
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+
+# Frontend: Node.js and Vite
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm/
+.yarn/
+.pnp.*
+dist/
+dist-ssr/
+build/
+coverage/
+*.local
+*.sw?
+
+# Backend: Python and Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+develop-eggs/
+eggs/
+.eggs/
+pip-wheel-metadata/
+share/python-wheels/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+backend/.venv/
+backend/venv/
+backend/env/
+
+# Django local/generated files
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+*.log
+
+# Test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+
+# Build and tool caches
+.cache/
+.vite/

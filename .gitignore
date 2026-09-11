@@ -18,6 +18,7 @@
 # Environment and local configuration
 .env
 .env.*
+.env.dev
 !.env.example
 
 # Frontend: Node.js and Vite

@@ -20,7 +20,6 @@ _DEFAULT_SECRET_KEY = 'django-insecure-%g*65*9kehpdn-=b7-)%e-02ni)ssewtz-0@o72@k
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', _DEFAULT_SECRET_KEY)
-print(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
@@ -58,9 +57,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'storages',
 
     # MY APPS
     'products',
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -154,8 +156,23 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / "media"
+
+# Google Cloud Storage
+GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME')
+GS_PROJECT_ID = os.getenv('GS_PROJECT_ID')
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -195,7 +212,10 @@ else:
     CORS_ALLOW_ALL_ORIGINS = False
 
 
-raw_origins = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000')
-CORS_ALLOWED_ORIGINS = [origin.strip() for origin in raw_origins.split(',') if raw_origins]
+raw_origins = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 
+    'http://localhost:3000'
+)
+CORS_ALLOWED_ORIGINS = [origin.strip() for origin in raw_origins.split(',') if origin.strip()]
 
 CORS_ORIGIN_WHITELIST = CORS_ALLOWED_ORIGINS

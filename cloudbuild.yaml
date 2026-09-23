@@ -32,5 +32,8 @@ steps:
       - 'ecommerce-cloud-run@project-a1fd25d9-4523-4d28-a1b.iam.gserviceaccount.com'
       - '--allow-unauthenticated'
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 images:
   - 'asia-south1-docker.pkg.dev/project-a1fd25d9-4523-4d28-a1b/ecommerce/backend:$BUILD_ID'

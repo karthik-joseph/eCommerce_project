@@ -1,0 +1,36 @@
+steps:
+  # 1. Build the backend Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-f'
+      - 'backend/Dockerfile'
+      - '-t'
+      - 'asia-south1-docker.pkg.dev/project-a1fd25d9-4523-4d28-a1b/ecommerce/backend:$BUILD_ID'
+      - 'backend'
+
+  # 2. Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'asia-south1-docker.pkg.dev/project-a1fd25d9-4523-4d28-a1b/ecommerce/backend:$BUILD_ID'
+
+  # 3. Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'ecommerce-backend'
+      - '--image'
+      - 'asia-south1-docker.pkg.dev/project-a1fd25d9-4523-4d28-a1b/ecommerce/backend:$BUILD_ID'
+      - '--region'
+      - 'asia-south1'
+      - '--platform'
+      - 'managed'
+      - '--service-account'
+      - 'ecommerce-cloud-run@project-a1fd25d9-4523-4d28-a1b.iam.gserviceaccount.com'
+      - '--allow-unauthenticated'
+
+images:
+  - 'asia-south1-docker.pkg.dev/project-a1fd25d9-4523-4d28-a1b/ecommerce/backend:$BUILD_ID'

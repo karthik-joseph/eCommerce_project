@@ -20,6 +20,7 @@
 .env.*
 .env.dev
 !.env.example
+cloud-run-env.yaml
 
 # Frontend: Node.js and Vite
 node_modules/
